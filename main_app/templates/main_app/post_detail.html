@@ -1,0 +1,40 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block Post_url %}<li class="nav-item active">{% endblock Post_url %}
+   {% block title %} | Posts {% endblock title %}
+{% block content %}
+<div id="service" class="service">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="titlepage">
+                  <h2><strong class="yellow">POST BY {{object.author}}</strong><br> {{object.title}}</h2><br>
+                  <small>{{object.date_posted}}</small>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12 col-sm-12">
+               <div id="ho_color" class="service_box">
+                  <img src="{{object.image.url}}" alt="#" />
+                  
+               </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+               <div id="ho_color" class="service_box">
+                 <p>{{object.content}}</p>
+               </div>
+            </div>
+         </div>
+      {% if object.author == user and object.author.is_staff%}
+         <div class="form-group">
+         <a  class="btn btn-secondary btn-lg mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+         {% if total_posts > 1 %}
+         <a  class="btn btn-danger btn-lg mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+         {% endif %}
+         </div>
+      {% endif%}
+      </div>
+   </div>
+   </div>
+   {% endblock content %}

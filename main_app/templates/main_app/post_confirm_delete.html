@@ -1,0 +1,27 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block login_url %}<li class="nav-item active">{% endblock login_url %}
+{% block title %} | Posts{% endblock title %}
+{% block content %}
+<br>
+<br>
+<br>
+<section class="section about-section gray-bg" id="about">
+            <form class="container" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12">
+                            <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Delete Post</legend>
+                            <h2>Are you sure to delete the Post "{{object.title}}"?<h2>
+                            </fieldset>
+                            <div class="form-group">
+                            <button type="submit" class="btn btn-outline-danger btn-md">Delete</button>
+                            <a  class="btn btn-outline-secondary btn-md" href="{% url 'post-detail' object.id %}">Cancel</a>
+                            </div>
+                    </div>
+                </div>
+                    
+            </form>
+        </section>
+{% endblock content %}

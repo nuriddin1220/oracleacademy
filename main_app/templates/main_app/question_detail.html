@@ -1,0 +1,60 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block qa_url %}<li class="nav-item active">{% endblock qa_url %}
+   {% block title %} | Q&A{% endblock title %}
+{% block content %}
+   <div id="service" class="service">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+               <div class="titlepage">
+                  <h2><strong class="yellow">QUESTIONED BY {{object.question_author}}</strong></h2><br><h3 class="text-info">{{object.question_title}}</h3><br>
+                  <hr class="my-1">
+                  <small class="text-success">{{object.question_date|date:"F j, H:i a"}}</small>
+               </div>
+                  {% if object.question_comment %}
+               <div class="bg-light mb-1">
+                  <div class="card-body">
+                  <p class="card-text">{{object.question_comment}}</p>
+                  </div>
+               </div>
+                  {% endif %}
+                  {% if object.question_body %}
+                     <pre class="bg-info card">
+                        <code class="p-3 language-html ">
+                           {{object.question_body}}
+                        </code>
+                     </pre>
+                {% endif %}
+            </div>
+         </div>
+            {% if user.is_authenticated %}
+            {% if object.question_author == user %}
+            <a href="{% url 'q-update' object.id %}" class="btn btn-outline-primary btn-md mt-3">Update Question</a>
+            {% endif %}
+            <a href="{% url 'answer' object.id %}" class="btn btn-outline-success btn-md mt-3">Answer question</a>
+            {% endif %}
+         {% if object.answer_set.all%}
+         <div class="col-md-12 col-sm-12 mt-2">
+             <h2><strong class="yellow">Answers ({{object.answer_set.count}})</strong></h2>
+            <hr class="my-1">
+            <div class="row">
+               {% for answer in object.answer_set.all %}
+                  <div class="card text-white bg-secondary mb-3 col-md-12  col-lg-12 col-sm-12 mt-2">
+                     <div class="card-header">{{answer.answer_author.username}} , {{answer.answer_date|date:" F j, H:i a Y."}}</div>
+                     <div class="card-body">
+                        <h5 class=" card-title">{{answer.answer_comment}}</h5>
+                        {% if answer.answer_body %}
+                        <pre class="border border-info p-3 rounded bg-secondary">
+                        <code class="card-text">{{answer.answer_body}}</code>
+                        </pre>
+                        {% endif %}
+                     </div>
+                  </div>
+               {% endfor %}
+            </div>
+         </div>
+         {% endif %}
+      </div>
+   </div>
+   {% endblock content %}

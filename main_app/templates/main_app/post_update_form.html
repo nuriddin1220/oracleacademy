@@ -1,0 +1,24 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block login_url %}<li class="nav-item active">{% endblock login_url %}
+    {% block title %} | Posts{% endblock title %}
+{% block content %}
+<br>
+<br>
+<br>
+<section class="section about-section gray-bg" id="about">
+            <form class="container" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12">
+                        <img src="{{object.image.url}}" alt="Updated Picture" />
+                            {{form|crispy}}
+                            <button type="submit" class="btn btn-outline-primary btn-md">Update Post</button>
+                    </div>
+                </div>
+                    
+            </form>
+        </section>
+{% endblock content %}

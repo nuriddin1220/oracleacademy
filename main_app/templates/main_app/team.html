@@ -1,0 +1,138 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block team_url %}<li class="nav-item active">{% endblock team_url %}
+    {% block title %} | Team {% endblock title %}
+{% block content %}
+<!-- team  section -->
+      <div id="team" class="team">
+         <div class="container">
+            <div class="row  col-md-12 col-sm-12 col-lg-12">
+               <div class="col-md-12 col-sm-12 col-lg-12">
+                  <div class="titlepage text-center">
+                     <h2 ><strong class="yellow">Team members<span class="text-primary"> ({{users.count}})<span></strong></h2><br><h2 class="text-info">We Have a Professional  Team !</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+            <!--Slider-->
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+               <div class="carousel-inner container">
+                  {% for user  in users %}
+                  <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                     <section class="section about-section gray-bg" id="about">
+                                 <form class="container">
+                                    <div class="row align-items-center flex-row-reverse">
+                                       <div class="col-lg-7 col-md-7 col-sm-12">
+                                             <div class="about-text go-to">
+                                                <h3 class="dark-color">{{user.username}}</h3>
+                                                {% if user.profile.designation %}
+                                                <h6 class="theme-color lead">{{user.profile.designation}}</h6>
+                                                {% endif %}
+                                                {% if user.profile.bio %}
+                                                <p>{{user.profile.bio}}</p>
+                                                {% endif %}
+                                                <div class="row about-list">
+                                                   <div class="col-md-6">
+                                                         {% if user.first_name %}
+                                                         <div class="media">
+                                                            <label>Firstname</label>
+                                                            <p>{{user.first_name}}</p>
+                                                         </div>
+                                                         {% endif %}
+                                                         {% if user.last_name %}
+                                                         <div class="media">
+                                                            <label>Lastname</label>
+                                                            <p>{{user.last_name}}</p>
+                                                         </div>
+                                                         {% endif %}
+                                                         {% if user.profile.age %}
+                                                         <div class="media">
+                                                            <label>Age</label>
+                                                            <p>{{user.profile.age}} Yr</p>
+                                                         </div>
+                                                         {% endif %}
+                                                         {% if user.profile.address %}
+                                                         <div class="media">
+                                                            <label>Address</label>
+                                                            <p>{{user.profile.address}}</p>
+                                                         </div>
+                                                         {% endif %}
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                      {% if user.email %}
+                                                         <div class="media">
+                                                            <label>E-mail</label>
+                                                            <p>{{user.email}}</p>
+                                                         </div>
+                                                         {% endif %}
+                                                         {% if user.profile.phone_number %}
+                                                         <div class="media">
+                                                            <label>Phone</label>
+                                                            <p>{{user.profile.phone_number}}</p>
+                                                         </div>
+                                                         {% endif %}
+                                                         {% if user.profile.workplace %}
+                                                         <div class="media">
+                                                            <label>Workplace</label>
+                                                            <p>{{user.profile.workplace}}</p>
+                                                         </div>
+                                                         {% endif %}
+                                                      </div>
+                                                </div>
+                                             </div>
+                                       </div>
+                                       <div class="col-lg-4 justify-content-center  col-md-4  col-sm-12 border p-1 rounded " style="margin:auto;">
+                                                <img style="width:100%;" src="{{user.profile.image.url}}" title="" alt="My Profile Picture Here">
+                                       </div>
+                                    </div>
+                                    <div class="counter" style="margin-top:20px;">
+                                       <div class="row justify-content-center">
+                                             <div class="col-6 col-lg-3">
+                                                <div class="count-data text-center">
+                                                   <h6 class="count h2" data-to="500" data-speed="500">{{total_users}}</h6>
+                                                   <p class="m-0px font-w-600">Total Clients</p>
+                                                </div>
+                                             </div>
+                                             {% if user.profile.projects %}
+                                             <div class="col-6 col-lg-3">
+                                                <div class="count-data text-center">
+                                                   <h6 class="count h2" data-to="150" data-speed="150">{{user.profile.projects}}</h6>
+                                                   <p class="m-0px font-w-600">Project Completed</p>
+                                                </div>
+                                             </div>
+                                             {% endif %}
+
+                                             <div class="col-6 col-lg-3">
+                                                <div class="count-data text-center">
+                                                   <h6 class="count h2" data-to="850" data-speed="850">{{user.answer_set.count}}</h6>
+                                                   <p class="m-0px font-w-600">Answers given</p>
+                                                </div>
+                                             </div>
+                                             {% if user.profile.experience_years %}
+                                             <div class="col-6 col-lg-3">
+                                                <div class="count-data text-center">
+                                                   <h6 class="count h2" data-to="190" data-speed="190">{{user.profile.experience_years}}</h6>
+                                                   <p class="m-0px font-w-600">Years of Experience</p>
+                                                </div>
+                                             </div>
+                                             {% endif %}
+                                       </div>
+                                    </div>
+                                 </form>
+                           </section>
+                  </div>
+                  {% endfor %}
+               </div>
+            <button class="carousel-control-prev" style="margin:auto;width: 100px;margin-left:50px;height: 100px;padding: 13px 18px;border-radius: 60px;font-size: 15px;text-align: center;"  data-target="#carouselExampleControls" data-slide="prev">
+               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+               <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next" style="margin:auto;width: 100px;height: 100px;padding: 13px 18px;margin-right:50px;border-radius: 60px;font-size: 15px;text-align: center;" data-target="#carouselExampleControls" data-slide="next">
+               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+               <span class="sr-only">Next</span>
+            </button>
+            </div>
+            <!--Slider-->
+      <!-- end team  section -->
+      {% endblock content %}

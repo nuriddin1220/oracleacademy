@@ -1,0 +1,23 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% block News_url %}<li class="nav-item active">{% endblock News_url %}
+    {% block title %} | News{% endblock title %}
+{% block content %}
+<br>
+<br>
+<br>
+<section class="section about-section gray-bg" id="about">
+            <form class="container" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12">
+                            {{form|crispy}}
+                            <button type="submit" class="btn btn-outline-primary btn-md">Update News</button>
+                    </div>
+                </div>
+                    
+            </form>
+        </section>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block home_url %}<li class="nav-item active">{% endblock home_url %}
+{% block content %}
+   <section class="banner_main">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-7 col-lg-7">
+               <div class="text-bg">
+                  <h1>Trusted and <br>Experienced Advisers</h1>
+                  <span>for oracle amateurs</span>
+                  <p>Master your OracleSQL, PLSQL skills and  become a active member of our Oracle Team</p>
+                  <a href="{% url 'about'  %}">About us</a>
+               </div>
+            </div>
+            <div class="col-md-5 col-lg-5">
+               <div class="ban_img">
+                  <figure><img src="{% static 'main_app/images/ba_ing.png' %}" alt="{% url 'home'  %}" /></figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+{% endblock content %}

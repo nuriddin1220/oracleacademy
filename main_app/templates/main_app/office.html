@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e0be07434ac536978a503de922a29719 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_e0be07434ac536978a503de922a29719" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_e0be07434ac536978a503de922a29719 = L.map(
+                "map_e0be07434ac536978a503de922a29719",
+                {
+                    center: [41.33286779377529, 69.21678988990358],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 18,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var marker_02b4fe53d8d0edc03fa19c725616a9f4 = L.marker(
+                [41.33286779377529, 69.21678988990358],
+                {}
+            ).addTo(map_e0be07434ac536978a503de922a29719);
+        
+    
+            var icon_db91d8cee3e8ec147619cf6f81854a7c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-home", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_02b4fe53d8d0edc03fa19c725616a9f4.setIcon(icon_db91d8cee3e8ec147619cf6f81854a7c);
+        
+    
+            marker_02b4fe53d8d0edc03fa19c725616a9f4.bindTooltip(
+                `<div>
+                     "Tinchlik" Headquarter
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var tile_layer_2c58247e103c26830661a5c89e6695f0 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_e0be07434ac536978a503de922a29719);
+        
+    
+            var tile_layer_3a293ece0aba48d5f153131a3a6e1ba0 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {"attribution": "Esri.WorldImagery", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_e0be07434ac536978a503de922a29719);
+        
+    
+            var layer_control_242face053bb9571a09c6b58f57aab64 = {
+                base_layers : {
+                    "By City View" : tile_layer_2c58247e103c26830661a5c89e6695f0,
+                    "Headquarter by Satellite" : tile_layer_3a293ece0aba48d5f153131a3a6e1ba0,
+                },
+                overlays :  {
+                },
+            };
+            L.control.layers(
+                layer_control_242face053bb9571a09c6b58f57aab64.base_layers,
+                layer_control_242face053bb9571a09c6b58f57aab64.overlays,
+                {"autoZIndex": true, "collapsed": true, "position": "bottomright"}
+            ).addTo(map_e0be07434ac536978a503de922a29719);
+            tile_layer_3a293ece0aba48d5f153131a3a6e1ba0.remove();
+        
+</script>
+</html>

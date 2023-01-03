@@ -1,0 +1,72 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block qa_url %}<li class="nav-item active">{% endblock qa_url %}
+  {% block title %} | Q&A {% endblock title %}
+{% block content %}
+<div class="mt-2 col-lg-12 col-md-12 col-sm-12  just-content-center">
+<h2 class="text-warning">All Questions&Answers</h2>
+<div class="container">
+<div class="mb-4 navbar navbar-light bg-light">
+  <form class="form-inline col-md-12 col-sm-12  justify-content-center" method='GET'>
+    <input class="form-control mr-sm-2 col-sm-9 col-md-9" type="search"  name='data' placeholder="Search by question body,answer, comment ..." value='{{ request.GET.data }}' aria-label="Search">
+    <button class="btn btn-outline-secondary my-2 my-sm-0 col-sm-2 col-md-1" type="submit">Search</button>
+  </form>
+</div>
+{% for question  in questions  %}
+<div class="card mb-2">
+  <div class="card-header">
+  Question:<a href="{% url 'q-detail' question.id %}">{{question.question_title|truncatechars:200}}<a>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      {% if question.question_body %}
+      <p><strong>Question Body :</strong>
+        <a href="{% url 'q-detail' question.id %}"> {{question.question_body|truncatechars:120}}</a>
+        </p>
+      {% elif question.question_comment %}
+      <p><strong>Question Comment :</strong>
+        <a href="{% url 'q-detail' question.id %}"> {{question.question_comment|truncatechars:120}}</a>
+        </p>
+      {% endif %}
+
+      {% if question.answer_set.all.count != 0 %}
+      <p><strong>Answer <strong class="text-primary">({{question.answer_set.all.count}})</strong>:</strong><a href="{% url 'q-detail' question.id %}">{{question.answer_set.all.first.answer_comment|truncatechars:100}}</a></p>
+      {% endif %}
+      <footer class="blockquote-footer text-success">By {{question.question_author.username}}, <cite class="text-info" title="Source Title">{{question.question_date|date:" F j, H:i a Y."}}</cite></footer>
+    </blockquote>
+  </div>
+</div>
+{% endfor %}
+    {% if  is_paginated %}
+    <div class="col-md-12 col-sm-12 pagination justify-content-center">
+    <ul class="pagination pagination-lg">
+      {% if page_obj.has_previous   %}
+      <li class="page-item"><a  class="page-link" href="?page=1">First</a></li>
+      <!--<a  class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>-->
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+      </a></li>
+      
+      {% endif %}
+    {% for num   in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+      <li class="page-item active"><a  class="page-link" href="?page={{num}}">{{num}}</a></li>
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+      <li class="page-item"><a  class="page-link" href="?page={{num}}">{{num}}</a></li>
+      {% endif %}
+    
+    {% endfor %}
+      {% if page_obj.has_next %}
+      <!-- <a  class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>-->
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+      </a></li>
+      <li class="page-item"> <a  class="page-link" href="?page={{page_obj.paginator.num_pages}}">Last</a></li>
+      {% endif %}
+      </div>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="{% url 'qa-new' %}" class="btn btn-outline-primary btn-md mt-3">Ask a question</a>
+    {% endif %}
+</div>
+{% endblock content %}

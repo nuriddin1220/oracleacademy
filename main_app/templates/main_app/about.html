@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block about_url %}<li class="nav-item active">{% endblock about_url %}
+    {% block title %} | About {% endblock title %}
+{% block content %}
+   <!-- about section -->
+   <div id="about" class="about">
+      <div class="container  style="height:450px;"  col-lg-12 col-sm-12">
+         <div class="row">
+            <div class="container col-md-6 col-lg-6 col-sm-12 border border-secondary p-1 rounded" style="height:450px;">
+                 {% include 'main_app/office.html' %}
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12">
+               <div class="about_box">
+                  <div class="titlepage">
+                     <h2><strong class="yellow">ABOUT US</strong><br>{{company.company_name}}</h2>
+                  </div>
+                  <h3 class="text-primary">ESTABLISHED IN {{company.established_year}}</h3>
+                  <address class="text-secondary" class="mt-2"><h4>{{company.address}}<br>Near {{company.target}}.</h4></address>
+                  <i class="fa fa-phone"  style='font-size:20px;color:red'>{{company.phone_number}}</i>
+                  <p class="text-secondary">{{company.company_aim}}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- about section -->
+{% endblock content %}
