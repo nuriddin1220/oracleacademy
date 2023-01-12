@@ -10,8 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+# from django.core.servers.basehttp import WSGIServer
 from pathlib import Path
 import os
+# import sys
+# import oracledb
+# oracledb.version = "8.3.0"
+# sys.modules["cx_Oracle"] = oracledb
+# WSGIServer.handle_error = lambda *args, **kwargs: None
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,6 +90,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'database',
+#         'USER': 'django',
+#         'PASSWORD': 'django1234',
+#         'HOST': 'dbinstance.coyb6gbyt90j.ap-northeast-1.rds.amazonaws.com',
+#         'PORT': '1521',
+#     }
+# }
 
 
 # Password validation
